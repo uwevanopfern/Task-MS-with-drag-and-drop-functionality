@@ -106,7 +106,7 @@ DB_PASSWORD=
     
 ```
 
-#### 10. Add the file to the Heroku and run migrations
+#### 11. Add the file to the Heroku and run migrations
 
 ```json
     git add .
