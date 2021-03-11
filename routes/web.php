@@ -13,6 +13,8 @@ Route::get('/', function () {
  */
 
 Route::resource('tasks', 'TaskController');
+Route::post('post-sortable', 'TaskController@updateSortablePriority');
+
 /*
 |--------------------------------------------------------------------------
 | Routes for ProjectController

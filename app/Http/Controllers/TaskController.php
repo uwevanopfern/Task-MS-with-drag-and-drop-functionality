@@ -16,7 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('priority', 'ASC')->paginate(10);
+        $tasks = Task::orderBy('priority', 'ASC')->get();
         return view('tasks.index')->withTasks($tasks);
     }
 
@@ -107,5 +107,20 @@ class TaskController extends Controller
             'project_id' => 'required|numeric',
             'priority' => 'required|numeric|gt:0',
         ]);
+    }
+
+    public function updateSortablePriority(Request $request)
+    {
+        $tasks = Task::all();
+
+        foreach ($tasks as $task) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $task->id) {
+                    $task->update(['priority' => $order['position']]);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
     }
 }
